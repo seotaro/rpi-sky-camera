@@ -3,8 +3,7 @@ Description= timer for deleter.
 
 [Timer]
 AccuracySec=1
-OnBootSec=10
-OnUnitActiveSec=3600
+OnCalendar=*-*-* 23:00
 Unit=rpi-sky-deleter.service
 
 [Install]

@@ -3,7 +3,7 @@ Description= timer for shoot.
 
 [Timer]
 AccuracySec=1
-OnBootSec=10
+OnBootSec=30
 OnUnitActiveSec=10
 Unit=rpi-sky-shooter.service
 

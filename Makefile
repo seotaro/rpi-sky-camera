@@ -46,20 +46,14 @@ start-sky-camera:
 	sudo systemctl enable rpi-sky-renderer.timer
 	sudo systemctl enable rpi-sky-deleter.service
 	sudo systemctl enable rpi-sky-deleter.timer
-	sudo systemctl start rpi-sky-shooter.service
 	sudo systemctl start rpi-sky-shooter.timer
-	sudo systemctl start rpi-sky-renderer.service
 	sudo systemctl start rpi-sky-renderer.timer
-	sudo systemctl start rpi-sky-deleter.service
 	sudo systemctl start rpi-sky-deleter.timer
 
 stop-sky-camera:
 	sudo systemctl stop rpi-sky-renderer.timer
-	sudo systemctl stop rpi-sky-renderer.service
 	sudo systemctl stop rpi-sky-shooter.timer
-	sudo systemctl stop rpi-sky-shooter.service
 	sudo systemctl stop rpi-sky-deleter.timer
-	sudo systemctl stop rpi-sky-deleter.service
 	sudo systemctl disable rpi-sky-renderer.timer
 	sudo systemctl disable rpi-sky-renderer.service
 	sudo systemctl disable rpi-sky-shooter.timer
