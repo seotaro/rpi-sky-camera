@@ -1,5 +1,6 @@
 import os
 import subprocess
+import pathlib
 from datetime import datetime, timedelta, timezone
 
 TZ_LOCAL = timezone(timedelta(hours=+9), 'JST')
@@ -25,8 +26,12 @@ def main(directory):
             return
 
         nowLocal = now.astimezone(TZ_LOCAL)
-        output = os.path.join(directory, nowLocal.strftime('%Y%m%d'),
-                              nowLocal.strftime('%Y%m%d-%H%M%S') + '.jpg')
+
+        subDirectory = os.path.join(directory, nowLocal.strftime('%Y%m%d'))
+        pathlib.Path(subDirectory).mkdir(parents=True, exist_ok=True)
+
+        output = os.path.join(
+            subDirectory, nowLocal.strftime('%Y%m%d-%H%M%S') + '.jpg')
 
         result = subprocess.run(['/usr/bin/raspistill',
                                  '--quality', '90',
