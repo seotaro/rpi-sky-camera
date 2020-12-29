@@ -4,6 +4,8 @@ import tempfile
 from datetime import datetime, timedelta, timezone
 from google.cloud import storage
 
+TZ_LOCAL = timezone(timedelta(hours=+9), 'JST')
+
 
 def upload(src, dest):
     """Upload the movie to Cloud Storage."""
@@ -20,7 +22,7 @@ def upload(src, dest):
 def main(directory, camera, bucket):
     try:
         now = datetime.now(timezone.utc)
-        nowLocal = now.astimezone(timezone(timedelta(hours=+9), 'JST'))
+        nowLocal = now.astimezone(TZ_LOCAL)
 
         with tempfile.TemporaryDirectory() as temp:
             filename = nowLocal.strftime('%Y%m%d') + '.mp4'
