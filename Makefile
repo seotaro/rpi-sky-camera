@@ -68,3 +68,10 @@ stop-sky-camera:
 	sudo rm /etc/systemd/system/rpi-sky-deleter.service
 
 	sudo rm -rf /etc/rpi-sky-camera
+
+
+status-sky-camera:
+	systemctl list-timers
+	systemctl status rpi-sky-shooter.service
+	systemctl status rpi-sky-renderer.service
+	systemctl status rpi-sky-deleter.service
