@@ -23,14 +23,14 @@ create-google-cloud-resources:
 start-sky-camera:
 	sudo -H pip3 install -r requirements.txt
 
-	chmod +x rpi-sky-shooter.sh
+	chmod +x rpi-sky-shooter.py
 	chmod +x rpi-sky-renderer.py
 	chmod +x rpi-sky-deleter.sh
 
 	sudo mkdir -p /etc/rpi-sky-camera
 	sudo cp credentials.json /etc/rpi-sky-camera
 	sudo cp environment /etc/rpi-sky-camera
-	sudo cp rpi-sky-shooter.sh /etc/rpi-sky-camera
+	sudo cp rpi-sky-shooter.py /etc/rpi-sky-camera
 	sudo cp rpi-sky-renderer.py /etc/rpi-sky-camera
 	sudo cp rpi-sky-deleter.sh /etc/rpi-sky-camera
 

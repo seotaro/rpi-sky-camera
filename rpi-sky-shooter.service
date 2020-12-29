@@ -4,7 +4,7 @@ Description= shoot the sky image.
 [Service]
 Type=simple
 EnvironmentFile=/etc/rpi-sky-camera/environment
-ExecStart=/etc/rpi-sky-camera/rpi-sky-shooter.sh
+ExecStart=/usr/bin/python3 /etc/rpi-sky-camera/rpi-sky-shooter.py
 
 [Install]
 WantedBy=multi-user.target
