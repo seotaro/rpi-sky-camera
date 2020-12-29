@@ -1,0 +1,10 @@
+[Unit]
+Description= render the sky image.
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/rpi-sky-camera/environment
+ExecStart=/usr/bin/python3 /etc/rpi-sky-camera/rpi-sky-renderer.py
+
+[Install]
+WantedBy=multi-user.target

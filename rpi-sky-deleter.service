@@ -1,0 +1,10 @@
+[Unit]
+Description= delete the sky image.
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/rpi-sky-camera/environment
+ExecStart=/etc/rpi-sky-camera/rpi-sky-deleter.sh
+
+[Install]
+WantedBy=multi-user.target

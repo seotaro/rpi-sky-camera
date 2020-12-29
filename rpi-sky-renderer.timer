@@ -1,0 +1,11 @@
+[Unit]
+Description= timer for shoot.
+
+[Timer]
+AccuracySec=1
+OnBootSec=10
+OnUnitActiveSec=600
+Unit=rpi-sky-shooter.service
+
+[Install]
+WantedBy=multi-user.target

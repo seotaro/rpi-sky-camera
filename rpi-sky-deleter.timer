@@ -1,0 +1,11 @@
+[Unit]
+Description= timer for deleter.
+
+[Timer]
+AccuracySec=1
+OnBootSec=10
+OnUnitActiveSec=3600
+Unit=rpi-sky-deleter.service
+
+[Install]
+WantedBy=multi-user.target
