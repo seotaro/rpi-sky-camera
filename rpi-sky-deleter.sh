@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -r ${IMAGE_SEQUENCE_DIRECTORY}
+rm -rf ${IMAGE_SEQUENCE_DIRECTORY}
