@@ -1,19 +1,20 @@
 import os
 import subprocess
 import pathlib
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from astral import Observer
 from astral.sun import sun
 
 
-def main(directory, observer):
+def main(directory, observer, daytimeMargin):
     try:
         now = datetime.now(timezone.utc)
+        delte = timedelta(seconds=daytimeMargin)
 
         s = sun(observer, now)
-        if now < s["sunrise"] or s["sunset"] < now:
-            print("not daytime. sunrise:{}, sunset:{}".format(
-                s["sunrise"], s["sunset"]))
+        if now < s["sunrise"] - delte or delte + s["sunset"] < now:
+            print("not daytime. sunrise:{}, sunset:{}, margin:{}[sed]".format(
+                s["sunrise"], s["sunset"], daytimeMargin))
             return
 
         pathlib.Path(directory).mkdir(parents=True, exist_ok=True)
@@ -45,8 +46,12 @@ if __name__ == '__main__':
     elif os.environ['LONGITUDE'] == "":
         print("LONGITUDE is empty")
 
+    elif os.environ['DAYTIME_MARGIN'] == "":
+        print("DAYTIME_MARGIN is empty")
+
     else:
         observer = Observer(
             os.environ['LATITUDE'], os.environ['LONGITUDE'])    # 撮影座標
 
-        main(os.environ['IMAGE_SEQUENCE_DIRECTORY'], observer)
+        main(os.environ['IMAGE_SEQUENCE_DIRECTORY'],
+             observer, int(os.environ['DAYTIME_MARGIN']))

@@ -17,7 +17,8 @@
         "MOVIE_BUCKET": "sky-camera",
         "CAMERA_ID": "123456",
         "LATITUDE": "35.9",
-        "LONGITUDE": "139.9"
+        "LONGITUDE": "139.9",
+        "DAYTIME_MARGIN": "1800"
       }
     }
   ]
