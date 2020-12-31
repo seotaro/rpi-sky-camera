@@ -22,6 +22,8 @@ def main(directory, observer):
 
         result = subprocess.run(['/usr/bin/raspistill',
                                  '--quality', '90',
+                                 '--width', '1920',
+                                 '--height', '1080',
                                  '--awb', 'sun',
                                  '--timeout', '1000',
                                  '--output', output])
