@@ -15,7 +15,9 @@
         "GOOGLE_APPLICATION_CREDENTIALS": "credentials.json",
         "IMAGE_SEQUENCE_DIRECTORY": ".",
         "MOVIE_BUCKET": "sky-camera",
-        "CAMERA_ID": "123456"
+        "CAMERA_ID": "123456",
+        "LATITUDE": "35.9",
+        "LONGITUDE": "139.9"
       }
     }
   ]
