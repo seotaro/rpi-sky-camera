@@ -1,10 +1,8 @@
 import os
 import subprocess
 import tempfile
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from google.cloud import storage
-
-TZ_LOCAL = timezone(timedelta(hours=+9), 'JST')
 
 
 def upload(src, dest):
@@ -22,12 +20,11 @@ def upload(src, dest):
 def main(directory, camera, bucket):
     try:
         now = datetime.now(timezone.utc)
-        nowLocal = now.astimezone(TZ_LOCAL)
 
         with tempfile.TemporaryDirectory() as temp:
-            filename = nowLocal.strftime('%Y%m%d') + '.mp4'
-            src = os.path.join(
-                directory, nowLocal.strftime('%Y%m%d'), '*.jpg')
+            src = os.path.join(directory,  '*.jpg')
+
+            filename = now.strftime('%Y%m%d-%H%M%S') + '.mp4'
             dest = os.path.join(temp, filename)
 
             result = subprocess.run(['ffmpeg', '-framerate', '30',

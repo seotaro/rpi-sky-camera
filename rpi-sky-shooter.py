@@ -1,11 +1,9 @@
 import os
 import subprocess
 import pathlib
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from astral import Observer
 from astral.sun import sun
-
-TZ_LOCAL = timezone(timedelta(hours=+9), 'JST')
 
 
 def main(directory, observer):
@@ -18,13 +16,9 @@ def main(directory, observer):
                 s["sunrise"], s["sunset"]))
             return
 
-        nowLocal = now.astimezone(TZ_LOCAL)
-
-        subDirectory = os.path.join(directory, nowLocal.strftime('%Y%m%d'))
-        pathlib.Path(subDirectory).mkdir(parents=True, exist_ok=True)
-
+        pathlib.Path(directory).mkdir(parents=True, exist_ok=True)
         output = os.path.join(
-            subDirectory, nowLocal.strftime('%Y%m%d-%H%M%S') + '.jpg')
+            directory, now.strftime('%Y%m%d-%H%M%S') + '.jpg')
 
         result = subprocess.run(['/usr/bin/raspistill',
                                  '--quality', '90',
