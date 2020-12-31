@@ -2,27 +2,20 @@ import os
 import subprocess
 import pathlib
 from datetime import datetime, timedelta, timezone
+from astral import Observer
+from astral.sun import sun
 
 TZ_LOCAL = timezone(timedelta(hours=+9), 'JST')
 
 
-def isDaytime(datetime):
-    nowLocal = datetime.astimezone(TZ_LOCAL)
-
-    seconds = nowLocal.hour * 3600 + nowLocal.minute * 60 + nowLocal.second
-
-    # 4時半から19時までを簡易的に日中とした。
-    if seconds < 4 * 3600 + 30 * 60 or 19 * 3600 < seconds:
-        return False
-
-    return True
-
-
-def main(directory):
+def main(directory, observer):
     try:
         now = datetime.now(timezone.utc)
-        if not isDaytime(now):
-            print("not daytime")
+
+        s = sun(observer, now)
+        if now < s["sunrise"] or s["sunset"] < now:
+            print("not daytime. sunrise:{}, sunset:{}".format(
+                s["sunrise"], s["sunset"]))
             return
 
         nowLocal = now.astimezone(TZ_LOCAL)
@@ -50,5 +43,14 @@ if __name__ == '__main__':
     if os.environ['IMAGE_SEQUENCE_DIRECTORY'] == "":
         print("IMAGE_SEQUENCE_DIRECTORY is empty")
 
+    elif os.environ['LATITUDE'] == "":
+        print("LATITUDE is empty")
+
+    elif os.environ['LONGITUDE'] == "":
+        print("LONGITUDE is empty")
+
     else:
-        main(os.environ['IMAGE_SEQUENCE_DIRECTORY'])
+        observer = Observer(
+            os.environ['LATITUDE'], os.environ['LONGITUDE'])    # 撮影座標
+
+        main(os.environ['IMAGE_SEQUENCE_DIRECTORY'], observer)
