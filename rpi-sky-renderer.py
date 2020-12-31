@@ -29,13 +29,9 @@ def main(directory, camera, bucket):
 
             result = subprocess.run(['ffmpeg', '-framerate', '30',
                                      '-pattern_type', 'glob', '-i', src,
-                                     '-s', '1920x1440',
-                                     '-vcodec', 'libx264',
-                                     '-pix_fmt', 'yuv420p',
-                                     '-profile:v', 'high',
-                                     '-level', '4.2',
-                                     '-preset', 'medium',
-                                     '-b:v', '54M',
+                                     '-s', '1920x1080',
+                                     '-vcodec', 'h264_omx',
+                                     '-vb', '5400k',
                                      '-r', '30',
                                      dest])
 
