@@ -1,5 +1,4 @@
 import os
-import subprocess
 import pathlib
 import picamera
 from time import sleep
