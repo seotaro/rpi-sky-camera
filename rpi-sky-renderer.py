@@ -1,6 +1,7 @@
 import os
 import subprocess
 import tempfile
+import ffmpeg
 from datetime import datetime, timezone
 from google.cloud import storage
 
@@ -27,16 +28,14 @@ def main(directory, camera, bucket):
             filename = now.strftime('%Y%m%d-%H%M%S') + '.mp4'
             dest = os.path.join(temp, filename)
 
-            result = subprocess.run(['ffmpeg', '-framerate', '30',
-                                     '-pattern_type', 'glob', '-i', src,
-                                     '-s', '1920x1080',
-                                     '-vcodec', 'h264_omx',
-                                     '-vb', '5400k',
-                                     '-r', '30',
-                                     dest])
-
-            if result.returncode != 0:
-                raise Exception("error ffmpeg command")
+            in_options = {'pattern_type': 'glob', 'framerate': 30}
+            out_options = {'vcodec': 'h264_omx', 'vb': '5400k', 'r': 30}
+            (
+                ffmpeg
+                .input(src, **in_options)
+                .output(dest, **out_options)
+                .run()
+            )
 
             upload(dest, {'bucketName': bucket,
                           'objectName': camera+'-'+filename})
