@@ -7,6 +7,7 @@ OnCalendar=*-*-* 12:00
 OnCalendar=*-*-* 17:00
 OnCalendar=*-*-* 18:00
 OnCalendar=*-*-* 19:00
+OnCalendar=*-*-* 20:00
 Unit=rpi-sky-renderer.service
 
 [Install]
