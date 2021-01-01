@@ -130,3 +130,5 @@ dmypy.json
 
 
 credentials.json
+*.otf
+.DS_Store
