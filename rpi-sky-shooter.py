@@ -1,6 +1,7 @@
 import os
 import subprocess
 import pathlib
+import picamera
 from datetime import datetime, timedelta, timezone
 from astral import Observer
 from astral.sun import sun
@@ -21,13 +22,12 @@ def main(directory, observer, daytimeMargin):
         output = os.path.join(
             directory, now.strftime('%Y%m%d-%H%M%S') + '.jpg')
 
-        result = subprocess.run(['/usr/bin/raspistill',
-                                 '--quality', '90',
-                                 '--width', '1920',
-                                 '--height', '1080',
-                                 '--awb', 'sun',
-                                 '--timeout', '1000',
-                                 '--output', output])
+        # picamera のテキスト出力はフォントと位置が選べないので使わない。
+        with picamera.PiCamera() as camera:
+            sleep(1)
+            camera.resolution = (1920, 1080)
+            camera.awb_mode = 'sunlight'
+            camera.capture(output, quality=90)
 
         if result.returncode != 0:
             raise Exception("error raspistill command")
