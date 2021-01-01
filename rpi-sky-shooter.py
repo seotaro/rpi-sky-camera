@@ -2,9 +2,20 @@ import os
 import subprocess
 import pathlib
 import picamera
+from time import sleep
 from datetime import datetime, timedelta, timezone
 from astral import Observer
 from astral.sun import sun
+from PIL import Image, ImageFont, ImageDraw
+import dateutil.tz
+
+
+def drawText(path, text):
+    img = Image.open(path)
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype('NotoSansJP-Regular.otf', 24)
+    draw.text((5, 0), text, font=font, fill=(218, 218, 218))
+    img.save(path)
 
 
 def main(directory, observer, daytimeMargin):
@@ -29,8 +40,8 @@ def main(directory, observer, daytimeMargin):
             camera.awb_mode = 'sunlight'
             camera.capture(output, quality=90)
 
-        if result.returncode != 0:
-            raise Exception("error raspistill command")
+        local = now.astimezone(dateutil.tz.tzlocal())
+        drawText(output, local.strftime('%Y-%m-%d %H:%M'))
 
     except Exception as e:
         print(e)
