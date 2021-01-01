@@ -22,9 +22,9 @@ COPY requirements-dev.txt .
 RUN pip install -r requirements-dev.txt
 
 
-# アプリケーション実行イメージ
-FROM base as runner
+# # アプリケーション実行イメージ
+# FROM base as runner
 
-WORKDIR /workspace
-COPY rpi-sky-renderer.py .
-CMD ["/workspace/rpi-sky-renderer.py"]
+# WORKDIR /workspace
+# COPY rpi-sky-renderer.py .
+# CMD ["/workspace/rpi-sky-renderer.py"]
