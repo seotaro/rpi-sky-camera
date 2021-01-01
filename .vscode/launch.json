@@ -10,7 +10,7 @@
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal",
-      "python": "/usr/local/bin/python",
+      "python": "/usr/bin/python3",
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "credentials.json",
         "IMAGE_SEQUENCE_DIRECTORY": ".",
