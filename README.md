@@ -27,5 +27,4 @@ make stop-sky-camera
 
 ## その他
 
-~コンテナは VS Code の Remote-Containers 拡張を使って開発するため。~
 VSCode の Remote DevelopmentPreview 拡張を使って、ラズパイ実機でデバッグすると便利。
