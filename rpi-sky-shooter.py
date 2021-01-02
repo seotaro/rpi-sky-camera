@@ -19,10 +19,11 @@ def drawText(path, text):
 
 def main(directory, observer, daytimeMargin):
     try:
-        now = datetime.now(timezone.utc)
+        tz = dateutil.tz.tzlocal()
+        now = datetime.now(tz)
         delte = timedelta(seconds=daytimeMargin)
 
-        s = sun(observer, now)
+        s = sun(observer=observer, date=now, tzinfo=tz)
         if now < s["sunrise"] - delte or delte + s["sunset"] < now:
             print("not daytime. sunrise:{}, sunset:{}, margin:{}[sed]".format(
                 s["sunrise"], s["sunset"], daytimeMargin))
@@ -39,8 +40,8 @@ def main(directory, observer, daytimeMargin):
             camera.awb_mode = 'sunlight'
             camera.capture(output, quality=90)
 
-        local = now.astimezone(dateutil.tz.tzlocal())
-        drawText(output, local.strftime('%Y-%m-%d %H:%M'))
+        # タイムスタンプを描画する。
+        drawText(output, now.strftime('%Y-%m-%d %H:%M'))
 
     except Exception as e:
         print(e)
