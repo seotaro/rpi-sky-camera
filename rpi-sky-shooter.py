@@ -12,7 +12,7 @@ import dateutil.tz
 def drawText(path, text):
     img = Image.open(path)
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype('NotoSansJP-Regular.otf', 24)
+    font = ImageFont.truetype('/etc/rpi-sky-camera/NotoSansJP-Regular.otf', 24)
     draw.text((5, 0), text, font=font, fill=(218, 218, 218))
     img.save(path)
 
