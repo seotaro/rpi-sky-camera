@@ -17,7 +17,7 @@ def upload(src, dest):
     print('upload {} {}'.format(dest['bucketName'], dest['objectName']))
 
 
-def main(directory, camera, bucket):
+def main(directory, hostname, bucket):
     try:
         now = datetime.now(timezone.utc)
 
@@ -37,7 +37,7 @@ def main(directory, camera, bucket):
             )
 
             upload(dest, {'bucketName': bucket,
-                          'objectName': camera+'-'+filename})
+                          'objectName': hostname+'-'+filename})
 
     except Exception as e:
         print(e)
@@ -50,10 +50,7 @@ if __name__ == '__main__':
     elif os.environ['MOVIE_BUCKET'] == "":
         print("MOVIE_BUCKET is empty")
 
-    elif os.environ['CAMERA_ID'] == "":
-        print("CAMERA_ID is empty")
-
     else:
         main(os.environ['IMAGE_SEQUENCE_DIRECTORY'],
-             os.environ['CAMERA_ID'],
+             os.uname()[1],
              os.environ['MOVIE_BUCKET'])
