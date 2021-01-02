@@ -33,6 +33,7 @@ start-sky-camera:
 	sudo cp rpi-sky-shooter.py /etc/rpi-sky-camera
 	sudo cp rpi-sky-renderer.py /etc/rpi-sky-camera
 	sudo cp rpi-sky-deleter.sh /etc/rpi-sky-camera
+	sudo cp NotoSansJP-Regular.otf /etc/rpi-sky-camera
 
 	sudo cp rpi-sky-shooter.service /etc/systemd/system
 	sudo cp rpi-sky-shooter.timer /etc/systemd/system
