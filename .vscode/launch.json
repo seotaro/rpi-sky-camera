@@ -13,7 +13,7 @@
       "python": "/usr/bin/python3",
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "credentials.json",
-        "IMAGE_SEQUENCE_DIRECTORY": "/var/rpi-sky-camera",
+        "IMAGE_SEQUENCE_DIRECTORY": "./var/rpi-sky-camera",
         "MOVIE_BUCKET": "sky-camera",
         "LATITUDE": "35.9",
         "LONGITUDE": "139.9",
