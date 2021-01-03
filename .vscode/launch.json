@@ -17,7 +17,9 @@
         "MOVIE_BUCKET": "sky-camera",
         "LATITUDE": "35.9",
         "LONGITUDE": "139.9",
-        "DAYTIME_MARGIN": "1800"
+        "DAYTIME_MARGIN": "1800",
+        "ISO":"100",
+        "SPEED":"3000"
       }
     }
   ]

@@ -17,7 +17,7 @@ def drawText(path, text):
     img.save(path)
 
 
-def main(directory, observer, daytimeMargin):
+def main(directory, observer, daytimeMargin, exposure):
     try:
         tz = dateutil.tz.tzlocal()
         now = datetime.now(tz)
@@ -35,9 +35,15 @@ def main(directory, observer, daytimeMargin):
 
         # picamera のテキスト出力はフォントと位置が選べないので使わない。
         with picamera.PiCamera() as camera:
-            sleep(1)
             camera.resolution = (1920, 1080)
             camera.awb_mode = 'sunlight'
+            camera.iso = exposure['iso']
+
+            sleep(1)
+
+            camera.exposure_mode = 'off'
+            camera.shutter_speed = exposure['speed']
+            
             camera.capture(output, quality=90)
 
         # タイムスタンプを描画する。
@@ -57,6 +63,12 @@ if __name__ == '__main__':
     elif os.environ['LONGITUDE'] == "":
         print("LONGITUDE is empty")
 
+    elif os.environ['ISO'] == "":
+        print("ISO is empty")
+
+    elif os.environ['SPEED'] == "":
+        print("SPEED is empty")
+
     elif os.environ['DAYTIME_MARGIN'] == "":
         print("DAYTIME_MARGIN is empty")
 
@@ -64,5 +76,7 @@ if __name__ == '__main__':
         observer = Observer(
             os.environ['LATITUDE'], os.environ['LONGITUDE'])    # 撮影座標
 
+        exposure = {'iso':int(os.environ['ISO']), 'speed':int(os.environ['SPEED'])}
+
         main(os.environ['IMAGE_SEQUENCE_DIRECTORY'],
-             observer, int(os.environ['DAYTIME_MARGIN']))
+             observer, int(os.environ['DAYTIME_MARGIN']), exposure)
