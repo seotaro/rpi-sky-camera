@@ -3,7 +3,14 @@ Description= timer for render.
 
 [Timer]
 AccuracySec=1
+OnCalendar=*-*-* 09:00
+OnCalendar=*-*-* 10:00
+OnCalendar=*-*-* 11:00
 OnCalendar=*-*-* 12:00
+OnCalendar=*-*-* 13:00
+OnCalendar=*-*-* 14:00
+OnCalendar=*-*-* 15:00
+OnCalendar=*-*-* 16:00
 OnCalendar=*-*-* 17:00
 OnCalendar=*-*-* 18:00
 OnCalendar=*-*-* 19:00
