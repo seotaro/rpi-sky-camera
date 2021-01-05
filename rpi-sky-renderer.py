@@ -3,6 +3,7 @@ import tempfile
 import ffmpeg
 from datetime import datetime, timezone
 from google.cloud import storage
+import dateutil.tz
 
 
 def upload(src, dest):
@@ -19,7 +20,8 @@ def upload(src, dest):
 
 def main(directory, hostname, bucket):
     try:
-        now = datetime.now(timezone.utc)
+        tz = dateutil.tz.tzlocal()
+        now = datetime.now(tz)
 
         with tempfile.TemporaryDirectory() as temp:
             src = os.path.join(directory,  '*.jpg')

@@ -20,9 +20,10 @@ create-google-cloud-resources:
 	gsutil iam ch serviceAccount:$(SERVICE_ACCOUNT)@$(PROJECT_ID).iam.gserviceaccount.com:roles/storage.objectCreator gs://$(MOVIE_BUCKET)
 	gsutil iam ch serviceAccount:$(SERVICE_ACCOUNT)@$(PROJECT_ID).iam.gserviceaccount.com:roles/storage.legacyBucketWriter gs://$(MOVIE_BUCKET)
 
-start-sky-camera:
+init-python:
 	sudo -H pip3 install -r requirements.txt
 
+start-sky-camera:
 	chmod +x rpi-sky-shooter.py
 	chmod +x rpi-sky-renderer.py
 	chmod +x rpi-sky-deleter.sh
